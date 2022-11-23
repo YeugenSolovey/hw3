@@ -20,6 +20,9 @@ class Convertor
     }
 }
 
+
+
+
 class Program
 {
     private static void Main(string[] args)
@@ -28,36 +31,104 @@ class Program
         decimal dolCurs;
         decimal yourGrn;
         decimal res;
+       
+        bool flag = true;
+
+        //euro
+        try {
+            do
+            {
+                Console.WriteLine("Enter euro curs: ");
+                eurCurs = Convert.ToDecimal(Console.ReadLine());
+                if (eurCurs <= 0)
+                {
+                    Console.WriteLine("Error");
+                    flag = true;
+                }
+                else flag = false;
+            } while (flag);
+        }
+        catch(FormatException)
+        {
+            do
+            {
+                Console.WriteLine("Enter euro curs: ");
+                eurCurs = Convert.ToDecimal(Console.ReadLine());
+                if (eurCurs <= 0)
+                {
+                    Console.WriteLine("Error");
+                    flag = true;
+                }
+                else flag = false;
+            } while (flag);
+        }
+        //dolar
         try
         {
-            Console.WriteLine("Enter eur curs: ");
-            eurCurs = Convert.ToDecimal(Console.ReadLine());
-
-            Console.WriteLine("Enter dol curs: ");
-            dolCurs = Convert.ToDecimal(Console.ReadLine());
+            do
+            {
+                Console.WriteLine("Enter dolar curs: ");
+                dolCurs = Convert.ToDecimal(Console.ReadLine());
+                if (dolCurs <= 0)
+                {
+                    Console.WriteLine("Error");
+                    flag = true;
+                }
+                else flag = false;
+            } while (flag);
         }
-        catch (FormatException)
+        catch(FormatException)
         {
-            eurCurs = 36;
-            dolCurs = 36;
-            Console.WriteLine("Error");
+            do
+            {
+                Console.WriteLine("Enter dolar curs: ");
+                dolCurs = Convert.ToDecimal(Console.ReadLine());
+                if (dolCurs <= 0)
+                {
+                    Console.WriteLine("Error");
+                    flag = true;
+                }
+                else flag = false;
+            } while (flag);
         }
+        
 
         Convertor convertor = new Convertor(eurCurs, dolCurs);
-
-        Console.WriteLine("Enter your grn: ");
+        //grn
         try
         {
-            yourGrn = Convert.ToDecimal(Console.ReadLine());
-            res = convertor.toDol(yourGrn);
-            Console.WriteLine("Dolar: " + res);
-            res = convertor.toEur(yourGrn);
-            Console.WriteLine("Euro: " + res);
+            do
+            {
+                Console.WriteLine("Enter grn curs: ");
+                yourGrn = Convert.ToDecimal(Console.ReadLine());
+                if (yourGrn <= 0)
+                {
+                    Console.WriteLine("Error");
+                    flag = true;
+                }
+                else flag = false;
+            } while (flag);
         }
         catch (FormatException)
         {
-            Console.WriteLine("Error");
-        }       
+            do
+            {
+                Console.WriteLine("Enter your grn: ");
+                yourGrn = Convert.ToDecimal(Console.ReadLine());
+                if (yourGrn <= 0)
+                {
+                    Console.WriteLine("Error");
+                    flag = true;
+                }
+                else flag = false;
+            } while (flag);
+        }
+
+        res = convertor.toDol(yourGrn);
+        Console.WriteLine("Dolar: " + res);
+        res = convertor.toEur(yourGrn);
+        Console.WriteLine("Euro: " + res);
+               
         Console.ReadLine();
     }
 }
